@@ -1,29 +1,26 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
-
-def give(graph,node_num) :
-    neighbor_dict = graph[node_num]
-    neighbor_list = graph.neighbors(node_num)
-    nbers = len(neighbor_dict)
-    nbersl = len(neighbor_list)
-    money = graph.node[node_num]['value']
-    print(money)
-    print(nbers)
-    print(nbersl)
-
+from give import *
 
 G = nx.path_graph(3)
-count = 0
 
-# for node in G.nodes :
-#     node[count]['value'] = random.randint(-1,1)
 G.nodes[0]['value'] = -2
 G.nodes[1]['value'] = -1
 G.nodes[2]['value'] = 4
 
-give(G,-1)
+# G = nx.Graph()
+# G.add_edges_from([(-2, -1), (-1, 4)])
 
-#print(G.nodes.data())
-# nx.draw(G, with_labels=True)
-# plt.show()
+node_num = -1
+while node_num != 'exit' :
+    print(G.nodes)
+    # nx.draw_networkx_labels(G,G.graph)
+    nx.draw(G)
+
+    # labels (dictionary, optional (default=None)) – Node labels in a dictionary keyed by node of text labels
+    nx.draw_networkx(G,labels=G.nodes)
+    plt.show()
+    node_num = input('Which node do you want give money from?')
+
+    give(G, int(node_num))
